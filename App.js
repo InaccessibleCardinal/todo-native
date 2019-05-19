@@ -21,8 +21,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
     headline: {
         borderColor: '#88c',
-        borderWidth: 1,
-        width: '100%',
+        // borderWidth: 1,
+        // width: '100%',
         padding: 10
     },
     container: {

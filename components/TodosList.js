@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ActivityIndicator, ScrollView} from 'react-native';
+import {ActivityIndicator, ScrollView, View} from 'react-native';
 import makeRequest from '../data/fetch';
 import {
     GET_TODOS_REQUEST, 
@@ -40,8 +40,25 @@ export default class TodosList extends Component {
         });
     }
 
+    renderTodo(todo) {
+        console.log('todo: ', todo)
+        return (
+            <Todo 
+                key={todo.id} 
+                todo={todo} 
+                toggleTodo={this.toggleTodo} 
+            />
+        );
+    }
+
+    keyExtractor(item) {
+        console.log('item: ', item)
+        return item.id;
+    }
+
     render() {
         let {todos, filteredBy} = this.props;
+        
         if (todos.length > 0) {
             let todosMarkup = todos.filter((t) => { //TODO replace double loop with reduce
                 if (filteredBy === 'C') {
@@ -62,7 +79,7 @@ export default class TodosList extends Component {
                 ); 
             });
             //TODO replace ScrollView with something that does windowing like FlatList
-            return (
+             return (
                 <ScrollView>
                     {todosMarkup}
                 </ScrollView>

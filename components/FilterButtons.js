@@ -1,23 +1,28 @@
 import React from 'react';
-import {/*StyleSheet,*/ Button, View } from 'react-native';
+import {View} from 'react-native';
+import FilterButton from './FilterButton';
+import {buttonStyles} from './buttonStyles';
 
 export default function FilterButtons({filterTodos, filteredBy}) {
     return (
-        <View>
-            <Button 
-                color={filteredBy === 'A' ? '#8C8' : '#888'} 
-                title={'Show All'} 
-                onPress={() => filterTodos('A')} 
+        <View style={buttonStyles.view}>
+            <FilterButton 
+                buttonText={'Show All'} 
+                filterType={'A'}
+                pressHandler={filterTodos}
+                filteredBy={filteredBy}
             />
-            <Button
-                color={filteredBy === 'C' ? '#8c8' : '#888'}
-                title={'Show Completed'} 
-                onPress={() => filterTodos('C')} 
+            <FilterButton 
+                buttonText={'Show Completed'} 
+                filterType={'C'}
+                pressHandler={filterTodos}
+                filteredBy={filteredBy} 
             />
-            <Button
-                color={filteredBy === 'U' ? '#8c8' : '#888'}
-                title={'Show Uncompleted'} 
-                onPress={() => filterTodos('U')} 
+            <FilterButton
+                buttonText={'Show Incomplete'} 
+                filterType={'U'}
+                pressHandler={filterTodos}
+                filteredBy={filteredBy} 
             />
         </View>
     );
